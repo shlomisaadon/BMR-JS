@@ -1,0 +1,111 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/main.css" rel="stylesheet" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    />
+
+    <!--  -->
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row p-5">
+        <h1>קלוריות ליום אחד במנוחה</h1>
+        <div class="col-6 form">
+          <label for="man">Male</label>
+          <input type="radio" name="geslacht" id="man" value="man" />
+          <label for="women">Female </label>
+          <input type="radio" name="geslacht" id="women" value="women" />
+
+          <p></p>
+          <label for="Height">Height: </label>
+          <input type="number" value="" class="form-control" id="Height" />
+          <p></p>
+          <label for="age">Age: </label>
+          <input type="number" class="form-control" id="age" />
+
+          <p></p>
+          <label for="Weight">Weight: </label>
+          <input type="number" class="form-control" id="Weight" />
+          <p></p>
+          <button class="btn btn-warning" type="button" id="button2">
+            Submit
+          </button>
+          <div class="answer text-center text-success"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready($("#button2").on("click", berekenBMR));
+
+      let answer = $(".answer");
+      function berekenBMR() {
+        let height = parseFloat($("#Height").val());
+        let weight = parseFloat($("#Weight").val());
+        let age = parseFloat($("#age").val());
+        let gender = $("input[name='geslacht']:checked").val();
+        console.log(height);
+        console.log(weight);
+        console.log(age);
+        console.log(gender);
+        let BMRCalculation = 0;
+
+        if (gender == "man") {
+          BMRCalculation = 10 * weight + 6.25 * height - 5 * age + 5;
+        } else {
+          BMRCalculation = 10 * weight + 6.25 * height - 5 * age - 161;
+        }
+        let string = "BMR: " + BMRCalculation + " Calories per day";
+
+        answer.text(string);
+        //   answer.document.write();
+        console.log(string);
+      }
+    </script>
+    <!-- <div class="container">
+      <h1>מחשבון BMR שריפת קלוריות יומית </h1>
+      <div class="subContainer">
+        <label for="sex">בחר את המין שלך</label><br />
+        <select id="sex" name="sex">
+          <option name="man" value="5">גבר</option>
+          <option name="women" value="-161">אישה</option></select
+        ><br /><br />
+
+        <label for="age">גיל</label><br />
+        <input  type="number" name="age" id="age" maxlength="2" />
+        <br />
+        <label for="weight">משקל</label><br />
+        <input type="number" name="weight" id="weight" maxlength="3" />
+        <br />
+        <label for="age">גובה</label><br />
+        <select id="height " name="height ">
+            <option name="v1" value="1.45"> m1.45</option>
+            <option name="v2" value="1.46">m1.46</option>
+            <option name="v3" value="1.47">m1.47</option>
+            <option name="v4" value="1.48">m1.48</option>
+            <option name="v5" value="1.49">m1.49</option>
+          ><br /><br />
+        <br />
+
+        <button onclick="x()">Click</button>
+        <p id="sum"></p>
+      </div>
+    </div> -->
+  </body>
+  <!-- <script src="/index.js"></script> -->
+</html>
